@@ -2,6 +2,9 @@
     "python.analysis.autoImportCompletions": true,
     "python.analysis.typeCheckingMode": "basic",
     "cSpell.words": [
-        "qubit"
+        "qiskit",
+        "qubit",
+        "qubits",
+        "Statevector"
     ]
 }
