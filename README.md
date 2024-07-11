@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this project I aim to present an implementation of the shadow tomography procedure, as described in the paper by Huang, Kueng, and Preskill in their paper [Predicting Many Properties of a Quantum System from Very Few Measurements](https://arxiv.org/pdf/2002.08953). In an attempt to keep the content accessible to larger audience I have included the theory which motivated to concrete implementation. In addition with each new function I demonstrate its use with informative examples and comparisons to the traditional complete state tomography. In this repository there is a directory called Testing which includes old scripts and notebook files that were used to develop the file called [ShadowTomography](ShadowTomography.ipynb). The contents of this directory are temporary and will be removed once the final version of the [ShadowTomography](ShadowTomography.ipynb) notebook is completed. 
+In this project, I aim to present an implementation of the shadow tomography procedure, as described in the paper by Huang, Kueng, and Preskill in their paper [Predicting Many Properties of a Quantum System from Very Few Measurements](https://arxiv.org/pdf/2002.08953). In an attempt to keep the content accessible to a larger audience, I have included the theory that motivated the concrete implementation. In addition with each new function, I demonstrate its use with informative examples and comparisons to the traditional complete state tomography. In this repository there is a directory called Testing which includes old scripts and notebook files that were used to develop the file called [ShadowTomography](ShadowTomography.ipynb). The contents of this directory are temporary and will be removed once the final version of the [ShadowTomography](ShadowTomography.ipynb) notebook is completed. 
 
 ## Table of Contents
 
@@ -21,7 +21,7 @@ Python 3.12.xx
 
 All prerequisite packages are included in the requirements.txt file and can be installed using pip. This is explained in [Installation Steps](#installation-steps).
 
-A Jupyter notebook environment.
+A Jupyter Notebook environment.
 
 ### Installation Steps
 
