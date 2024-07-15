@@ -53,6 +53,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-Your Name - [your-email@example.com](mailto:your-email@example.com)
+Zachary Kokot - [zachary.kokot@ucalgary.ca](mailto:zachary.kokot@ucalgary.ca)
 
-Project Link: [https://github.com/your-username/your-repository](https://github.com/your-username/your-repository)
+Project Link: [https://github.com/ZacharyKokot/Summer-Research-2024](https://github.com/ZacharyKokot/Summer-Research-2024)
