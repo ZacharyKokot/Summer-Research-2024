@@ -1,0 +1,75 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{Huang_Kueng_Preskill_2020}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=557e8b0644394a4580aa21daabbdf021}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Hsin-Yuan},
+           giveni={H\bibinithyphendelim Y\bibinitperiod}}}%
+        {{hash=1fdb144c06493006760bce8f34d8d0ba}{%
+           family={Kueng},
+           familyi={K\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod}}}%
+        {{hash=fbe61da8813855105d0c727fa93b4b4d}{%
+           family={Preskill},
+           familyi={P\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{ae1aa8e41c5a537a0fa1775855f5382c}
+      \strng{fullhash}{ae1aa8e41c5a537a0fa1775855f5382c}
+      \strng{fullhashraw}{ae1aa8e41c5a537a0fa1775855f5382c}
+      \strng{bibnamehash}{ae1aa8e41c5a537a0fa1775855f5382c}
+      \strng{authorbibnamehash}{ae1aa8e41c5a537a0fa1775855f5382c}
+      \strng{authornamehash}{ae1aa8e41c5a537a0fa1775855f5382c}
+      \strng{authorfullhash}{ae1aa8e41c5a537a0fa1775855f5382c}
+      \strng{authorfullhashraw}{ae1aa8e41c5a537a0fa1775855f5382c}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nature Physics}
+      \field{number}{10}
+      \field{title}{Predicting many properties of a quantum system from very few measurements}
+      \field{volume}{16}
+      \field{year}{2020}
+      \field{pages}{1050\bibrangedash 1057}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1038/s41567-020-0932-7
+      \endverb
+      \verb{urlraw}
+      \verb https://www.nature.com/articles/s41567-020-0932-7
+      \endverb
+      \verb{url}
+      \verb https://www.nature.com/articles/s41567-020-0932-7
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

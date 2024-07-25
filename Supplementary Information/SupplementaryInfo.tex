@@ -17,8 +17,12 @@
  \rhead{\thepage}
  \renewcommand{\headrulewidth}{0pt} % Removes the horizontal line in the headers
 
+\usepackage[backend=biber]{biblatex} % For the bibliography
+\addbibresource{refs.bib} % The file containing the bibliography
 
 \usepackage{tcolorbox} % For colored boxes
+
+\usepackage{hyperref} % For hyperlinks
 
 \newtcolorbox[auto counter]{theorem}{colback=blue!5!white,colframe=blue!75!black,fonttitle=\bfseries,fontupper=\itshape,title=Theorem~\thetcbcounter}
 
@@ -42,7 +46,7 @@
     Part of what makes shadow tomography appealing is that it requires a smaller number of measurements to predict an observable within the same error when compared to full state tomography. In this section, we will prove that the random local Pauli measurement primitive requires a number of measurements that scales logarithmically with the number of target observables and exponentially in the locality of the observables. This is a significant improvement over full tomography, which requires a number of measurements that scales exponentially with the number of qubits.
 
     \subsection{Theorem}
-    To estimate the expectation value of $M$ observables by median of means estimation with maximum error $\epsilon$ and success probability $1-\delta$ we turn to the results of 
+    To estimate the expectation value of $M$ observables by median of means estimation with maximum error $\epsilon$ and success probability $1-\delta$ we turn to the results of \cite{Huang_Kueng_Preskill_2020}
 
     \subsection{Proof}
 
@@ -54,5 +58,7 @@
     \subsection{Theorem}
 
     \subsection{Proof}
+
+    \printbibliography[title={References}]
 
 \end{document}
