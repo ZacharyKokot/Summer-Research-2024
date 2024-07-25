@@ -22,11 +22,20 @@
 
 \usepackage{tcolorbox} % For colored boxes
 
-\usepackage{hyperref} % For hyperlinks
-
 \newtcolorbox[auto counter]{theorem}{colback=blue!5!white,colframe=blue!75!black,fonttitle=\bfseries,fontupper=\itshape,title=Theorem~\thetcbcounter}
 
 \newtcolorbox[auto counter]{lemma}{colback=yellow!5!white,colframe=yellow!75!black,fonttitle=\bfseries,fontupper=\itshape,title=Lemma~\thetcbcounter}
+
+\usepackage{hyperref} % For hyperlinks
+
+\usepackage{amsmath} % For mathematical characters
+\usepackage{amssymb} % For mathematical symbols
+
+% Removes the indentation of the first line of a paragraph.
+\newlength\tindent
+\setlength{\tindent}{\parindent}
+\setlength{\parindent}{0pt}
+\renewcommand{\indent}{\hspace*{\tindent}}
 
 \author{Zachary Kokot}
 \title{Supplementary Information}
@@ -46,9 +55,79 @@
     Part of what makes shadow tomography appealing is that it requires a smaller number of measurements to predict an observable within the same error when compared to full state tomography. In this section, we will prove that the random local Pauli measurement primitive requires a number of measurements that scales logarithmically with the number of target observables and exponentially in the locality of the observables. This is a significant improvement over full tomography, which requires a number of measurements that scales exponentially with the number of qubits.
 
     \subsection{Theorem}
-    To estimate the expectation value of $M$ observables by median of means estimation with maximum error $\epsilon$ and success probability $1-\delta$ we turn to the results of \cite{Huang_Kueng_Preskill_2020}
+
+    Fix a collection of $M$ observables, maximum error $\epsilon$, and failure probability $\delta$. Set 
+    \begin{equation*}
+        K = 2 \log{\left(\frac{2M}{\delta}\right)} \quad \text{and} \quad N \leq \frac{34}{\epsilon^2} \max_{1 \leq i \leq M} 4^{L_i} ||O_i||^2_\infty,
+    \end{equation*}
+
+    Where $L_i$ is the locality of the $i$-th observable, $||O||_\infty$ denotes the matrix norm. Then, a collection of $NK$ independent classical shadows allow for the prediction of $M$ observables via median of means prediction such that
+    \begin{equation*}
+        |\hat{o}_i(N,K) - \text{tr}(O_i\rho)| \leq \epsilon \quad \text{for all} \quad 1 \leq i \leq M
+    \end{equation*}
+    with probability at least $1-\delta$.
 
     \subsection{Proof}
+    To estimate the expectation value of $M$ observables by median of means estimation with maximum error $\epsilon$ and success probability $1-\delta$ we turn to the results of \cite{Huang_Kueng_Preskill_2020}. In which they state the following theorem:
+    \begin{theorem}
+        Let X be a random variable with variance $\sigma^2$. Then, K independent sample means of size $N = 34 \frac{\sigma^2}{\epsilon^2}$ suffice to construct a median of means estimator $\hat{\mu}(N, K)$ that obeys 
+        \begin{equation}
+            \mathbb{P}[|\hat{\mu}(N, K) - \mathbb{E}[X]| \geq \epsilon] \leq 2e^{-K/2}.
+        \end{equation}
+    \end{theorem}
+
+    They also give the following lemma:
+    \begin{lemma}
+        Fix an observable $O$ and set $\hat{o} = \text{tr}(O\hat{\rho})$, where $\hat{\rho}$ is a classical shadow. Then
+        \begin{equation}
+            \text{Var}[\hat{o}] = \mathbb{E}\left[(\hat{o}-\mathbb{E}[\hat{o}^2])\right] \leq \left|\left| O - \frac{\text{tr}(O)}{2^n} \mathbb{I} \right|\right|^2_\text{shadow}.
+        \end{equation}
+    \end{lemma}
+
+    From the above theorem and lemma, we can conclude that to estimate a single observable the size of each estimator is given by 
+    \begin{equation}
+        N \leq \frac{34}{\epsilon^2}\left|\left| O - \frac{\text{tr}(O)}{2^n} \mathbb{I} \right|\right|^2_\text{shadow}.
+    \end{equation}
+
+    To estimate $M$ observables, we need to take the maximum of the above expression over all observables. This will ensure that for all observables the maximum error is less than $\epsilon$. Thus, the size of each estimator to estimate $M$ observables is given by
+    \begin{equation}
+        N \leq \frac{34}{\epsilon^2} \max_{1\leq i \leq M} \left|\left| O_i - \frac{\text{tr}(O_i)}{2^n} \mathbb{I} \right|\right|^2_\text{shadow}.
+    \end{equation}
+
+    Finally, for the arbitrary Pauli basis measurement primitive we have that the shadow norm has the following property
+    \begin{equation}
+        \left|\left| O - \frac{\text{tr}(O)}{2^n} \mathbb{I} \right|\right|^2_\text{shadow} \leq 4^{L(O)} ||O||^2_\infty,
+    \end{equation}
+
+    Where $L(O)$ is the locality of the observable and $||O||_\infty$ denotes the matrix norm. This implies that the size of each estimator to estimate $M$ observables is given by
+    \begin{equation}
+        N \leq \frac{34}{\epsilon^2} \max_{1\leq i \leq M} 4^{L_i} ||O_i||^2_\infty.
+    \end{equation}
+
+    From the above theorem, we have that for a single random variable the probability the error bound is violated is given by
+    \begin{equation}
+        \mathbb{P}[|\hat{\mu}(N, K) - \mathbb{E}[X]| \geq \epsilon] \leq 2e^{-K/2}.
+    \end{equation}
+
+    We would like to ensure that the probability that the error bound is for any of the $M$ observables is less than $\delta$. To determine an expression for $K$ which satisfies this requirement we can use Booles inequality. Booles inequality states that for any countable set of events $A_1, A_2, \ldots, A_n$ we have
+    \begin{equation}
+        \mathbb{P}\left[\bigcup_{i=1}^n A_i\right] \leq \sum_{i=1}^n \mathbb{P}[A_i].
+    \end{equation}
+
+    In English this means that the probability any event in the set occurs is no greater than the sum of the probabilities of the individual events. Assume the estimation of each observable has a probability of violating the error bound of $\delta_0$. Then, by Booles inequality, the probability that the error bound is violated for any of the $M$ observables is less than
+    \begin{equation*}
+        \sum_{i=1}^ \mathbb{P}[A_i] = \sum_{i=1}^M \delta_0 = M\delta_0 = \delta.
+    \end{equation*}
+
+    Thus, we have that
+    \begin{equation*}
+        2e^{-K/2} \leq \frac{\delta}{M}.
+    \end{equation*}
+
+    Rearranging the above expression we find that
+    \begin{equation*}
+        K \geq 2\log{\left(\frac{2M}{\delta}\right)}.
+    \end{equation*}
 
     \section{Proof of the Computational Complexity for the Estimation of Pauli Observables from shadows generated by the Random Local Pauli Measurement Primitive}
 
