@@ -21,10 +21,20 @@
 \addbibresource{refs.bib} % The file containing the bibliography
 
 \usepackage{tcolorbox} % For colored boxes
+\usepackage{xcolor} % For colors
 
-\newtcolorbox[auto counter]{theorem}{colback=blue!5!white,colframe=blue!75!black,fonttitle=\bfseries,fontupper=\itshape,title=Theorem~\thetcbcounter}
+\definecolor{blue}{HTML}{66D3F4}
+\definecolor{lightBlue}{HTML}{E3F7FD}
+\definecolor{yellow}{HTML}{FFDC5C}
+\definecolor{lightYellow}{HTML}{FFF9E4}
+\definecolor{pink}{HTML}{DE7CC3}
+\definecolor{lightPink}{HTML}{F9E7F4}
 
-\newtcolorbox[auto counter]{lemma}{colback=yellow!5!white,colframe=yellow!75!black,fonttitle=\bfseries,fontupper=\itshape,title=Lemma~\thetcbcounter}
+\newtcolorbox[auto counter]{definition}{colback=lightPink,colframe=pink,fonttitle=\bfseries,fontupper=\itshape,title=Definition~\thetcbcounter}
+
+\newtcolorbox[auto counter]{theorem}{colback=lightBlue,colframe=blue,fonttitle=\bfseries,fontupper=\itshape,title=Theorem~\thetcbcounter}
+
+\newtcolorbox[auto counter]{lemma}{colback=lightYellow,colframe=yellow,fonttitle=\bfseries,fontupper=\itshape,title=Lemma~\thetcbcounter}
 
 \usepackage{hyperref} % For hyperlinks
 
