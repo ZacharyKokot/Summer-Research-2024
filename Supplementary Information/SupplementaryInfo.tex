@@ -59,6 +59,32 @@
     \newpage
 
     \section{Proof any Density Matrix can be Expressed as a Linear Combination of Pauli Matrices}
+    \subsection{Motivation}
+    
+    \subsection{Theorem}
+    Let $\hat{\rho}$ be an $n \times n$ density matrix. Then, $\hat{\rho}$ can be expressed as a linear combination of tensor products of Pauli matrices. That is, there exists a set of coefficients $\{a_{i_1, i_2, \dots, i_n}\}$ such that:
+    \begin{equation}
+        \hat{\rho} = \sum_{i_1,i_2,\dots,i_n = 0}^{3} a_{i_1, i_2, \dots, i_n} \hat{\sigma}_{i_1,i_2,\dots,i_n},
+    \end{equation}
+
+    where $\hat{\sigma}_{i_1,i_2,\dots,i_n} = \hat{\sigma}_{i_1} \otimes \hat{\sigma}_{i_2} \otimes \dots \otimes \hat{\sigma}_{i_n}$ and $\hat{\sigma}_{i}$ corresponds to the $i$-th Pauli matrix (where $\sigma_0$ is the $2 \times 2$ identity matrix.). Additionally, the coefficients $a_{i_1, i_2, \dots, i_n}$ are the expectation values of the corresponding Pauli matrices. That is, $a_{i_1, i_2, \dots, i_n} = \text{tr}(\hat{\sigma}_{i_1,i_2,\dots,i_n}\hat{\rho})$.
+
+    \subsection{Proof}
+    We will begin by proving the theorem for a single qubit. Then, we will extend the proof to $n$ qubits. For a single qubit, the density matrix can be expressed as:
+    \begin{equation}
+        \hat{\rho} = 
+        \begin{pmatrix}
+            \rho_{00} & \rho_{01} \\
+            \rho_{10} & \rho_{11}
+        \end{pmatrix}
+    \end{equation}
+
+    Where to satisfy the Hermiticity condition, $\rho_{01} = \rho_{10}^*$, and $\rho_{00}$ and $\rho_{11}$ are real. Additionally, to satisfy the trace condition, $\text{tr}(\hat{\rho}) = 1$, we have that $\rho_{00} + \rho_{11} = 1$. 
+    
+    We know that density matrices are Hermitian and positive semi-definite. Thus, the following theorem is useful.
+    \begin{theorem}
+        
+    \end{theorem}
 
     \section{Proof of the Sample Complexity for Complete State Tomography}
 
@@ -192,6 +218,33 @@
     Where $P_j$ is the $j$-th Pauli operator, $U_j$ is the $j$-th unitary operator, and $\ket{\hat{b}_j}$ is the $j$-th bit of the bitstring of the shadow. Where the above expression evaluates to $\pm3^{\text{Locality}(O)}$ if for each $j$, $U_j$ transforms $P_j$ to $Z$ (the Pauli-Z operator). Otherwise the expression evaluates to 0. Then the expectation value of the Pauli observable is given by the mean of the single shot expectation values.
     
     \subsection{Proof}
+    Starting with the general expression for the expectation value of an observable, we have:
+    \begin{equation*}
+        \hat{o} = \text{tr}(O\hat{\rho})
+    \end{equation*}
+    
+    Where $O$ is the observable and $\hat{\rho}$ is the classical shadow. For a Pauli observable, $O$, we have that $O = \bigotimes_{j=1}^n P_j$ where $P_j \in \{ \sigma_0, \sigma_1, \sigma_2, \sigma_3 \}$. Then, the expectation value of the Pauli observable is given by:
+    \begin{equation*}
+        \hat{o} = \text{tr}\left\{\left( \bigotimes_{j=1}^n P_j \right) \hat{\rho}\right\}.
+    \end{equation*}
+
+    From \cite{Huang_Kueng_Preskill_2020}, we have that:
+    \begin{theorem}
+        In the random local Pauli measurement primitive, we have the single shot density matrix representation of the state is given by:
+        \begin{equation}
+            \hat{\rho} = \bigotimes^n_{j=1}\left(3U_j^\dagger\ket{\hat{b}_j}\bra{\hat{b}_j}U_j - \mathbb{I} \right).
+        \end{equation}
+    \end{theorem}
+
+    Thus, the expectation value of the Pauli observable is given by:
+    \begin{align*}
+        \hat{o} &= \text{tr}\left\{\left( \bigotimes_{j=1}^n P_j \right) \left( \bigotimes^n_{j=1}\left(3U_j^\dagger\ket{\hat{b}_j}\bra{\hat{b}_j}U_j - \mathbb{I} \right) \right)\right\},\\
+        \hat{o} &= \text{tr}\left\{ \bigotimes_{j=1}^n P_j  \left(3U_j^\dagger\ket{\hat{b}_j}\bra{\hat{b}_j}U_j - \mathbb{I} \right) \right\},\\
+        \hat{o} &= \text{tr}\left\{ \bigotimes_{j=1}^n 3P_jU_j^\dagger\ket{\hat{b}_j}\bra{\hat{b}_j}U_j - P_j  \right\},\\
+        \hat{o} &= \prod_{j=1}^n \left[ \text{tr}\{ 3 P_j U^\dagger_j \ket{\hat{b}_j}\bra{\hat{b}_j}U_j -  P_j \} \right],\\
+        \hat{o} &= \prod_{j=1}^n \left[ \text{tr}\{ 3 P_j U^\dagger_j \ket{\hat{b}_j}\bra{\hat{b}_j}U_j\} - \text{tr}\{ P_j \} \right],\\
+        \hat{o} &= \prod_{j=1}^n \left[ \text{tr}\{ 3 U_jP_j U^\dagger_j \ket{\hat{b}_j}\bra{\hat{b}_j}\} - \text{tr}\{ P_j \} \right].
+    \end{align*}
 
 
     \printbibliography[title={References}]

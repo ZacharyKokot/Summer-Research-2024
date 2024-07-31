@@ -33,9 +33,13 @@ A Jupyter Notebook environment.
 
 ## Features
 
-- Feature 1
-- Feature 2
-- Feature 3
+- Main Jupyter Notebook
+- IBM Quantum Platform Demo
+- Supplementary Information
+- Data
+
+### Data
+Over the course of this project I generated various data sets of measurements on simulated quantum processors. The generation of this data takes time so to cut down on the run time of the main Jupyter notebook I generated the data sets a single time and stored them here. The cells which generate this data within the notebook 
 
 ## Contributing
 
