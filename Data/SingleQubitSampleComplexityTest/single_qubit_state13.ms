@@ -1,0 +1,16 @@
+NumQubits:1
+Size:13
+Y
+X
+Y
+Y
+Y
+X
+X
+X
+X
+X
+X
+Y
+X
+*

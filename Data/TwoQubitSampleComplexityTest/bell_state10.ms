@@ -1,0 +1,13 @@
+NumQubits:2
+Size:10
+ZZ
+XZ
+YX
+XZ
+YY
+YX
+XX
+YY
+YY
+XY
+*
