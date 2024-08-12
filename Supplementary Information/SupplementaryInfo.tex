@@ -63,7 +63,68 @@
     On existing quantum devices it is often the case that measurements can only be performed in the computational basis. However, it is possible to perform measurements in different bases by applying a unitary transformation to the state before measurement. In this section, we will show how to perform measurements in different bases using only computational basis measurements.
 
     \subsection{Method}
-    
+    Given a quantum state $\ket{\psi}$ of a two level system (qubit), we can mathematically represent a measurement which results in one of the two basis states $\ket{v_1} \text{ or } \ket{v_2}$ as 
+    \begin{align*}
+        \ket{v_1} \braket{v_1 | \psi} &= v_1 \ket{v_1}, \\
+        \ket{v_2} \braket{v_2 | \psi} &= v_2 \ket{v_2}.
+    \end{align*}
+
+    These two measurement outcomes, $v_1$ and $v_2$, are the eigenvalues of my measurement basis. Say that instead I want to measure in a different basis with eigenstates $\ket{u_1} \text{ and } \ket{u_2}$. I need to then perform some unitary operation on my measurement operator so 
+    \begin{align*}
+        \ket{v_1} \bra{v_1} &\xrightarrow{\mathbf{U}} \ket{u_1} \bra{u_1},\\
+        \ket{v_2} \bra{v_2} &\xrightarrow{\mathbf{U}} \ket{u_2} \bra{u_2}.
+    \end{align*}
+
+    This can be done by simply applying the unitary operator, $\mathbf{U}$, to the ket and bra which make up the measurement operator and thus the measurement results are given by 
+    \begin{align*}
+        \mathbf{U} \ket{v_1} \bra{v_1} \mathbf{U}^\dagger \ket{\psi} &= \ket{u_1} \braket{u_1 | \psi} = u_1 \ket{u_1}, \\
+        \mathbf{U} \ket{v_2} \bra{v_2} \mathbf{U}^\dagger \ket{\psi} &= \ket{u_2} \braket{u_2 | \psi} = u_2 \ket{u_2}.
+    \end{align*}
+
+    This is not so helpful for us as our measurement operator is fixed but using the associative property we can place brackets to "change" the order operators are applied. This allows us to write the measurement results as
+    \begin{align*}
+        \mathbf{U} (\ket{v_1} \bra{v_1} (\mathbf{U}^\dagger \ket{\psi})) &= u_1 \ket{u_1}, \\
+        \mathbf{U} (\ket{v_2} \bra{v_2} (\mathbf{U}^\dagger \ket{\psi})) &= u_2 \ket{u_2}.
+    \end{align*}
+
+    This is useful as we can see that the measurement results are given by the application of the unitary operator to the state before measurement. This allows us to perform measurements in different bases using only computational basis measurements as long as we can fine a unitary operator which performs the desired transformation. Additionally, notice the left most operator $\mathbf{U}$ only serves to transform the state after measurement to the corresponding basis state but as measurement is usually the final step in a quantum circuit it can usually be ignored.
+
+    \subsection{Example}
+    Consider the following example. We wish to measure in the $X$ basis but only have access to computational ($Z$) basis measurements. Following the method above We must find a unitary operator which transforms the $Z$ basis states to the $X$ basis states. Conveniently, We can write the $X$ basis states as a linear combination of the $Z$ basis states as follows
+    \begin{align*}
+        \ket{+} &= \frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}, \\
+        \ket{-} &= \frac{1}{\sqrt{2}}\ket{0} - \frac{1}{\sqrt{2}}\ket{1}.
+    \end{align*}
+
+    Thus the unitary operator must act as follows
+    \begin{align*}
+        \mathbf{U} \ket{0} &= \frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}, \\
+        \mathbf{U} \ket{1} &= \frac{1}{\sqrt{2}}\ket{0} - \frac{1}{\sqrt{2}}\ket{1}.
+    \end{align*}
+
+    The states of single qubit systems can be described by a two element vector and the unitary operator can be described by a $2 \times 2$ matrix. Thus, the unitary operator acting on the computational basis states can be written in the computational basis as
+    \begin{align*}
+        \mathbf{U} \begin{pmatrix} 1 \\ 0\end{pmatrix} &= \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ 1 \end{pmatrix}, \\
+        \mathbf{U} \begin{pmatrix} 0 \\ 1 \end{pmatrix} &= \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ -1 \end{pmatrix}.
+    \end{align*}
+
+    If we express the unitary operator as a matrix, we have that
+    \begin{equation*}
+        \mathbf{U} = \begin{pmatrix} a & b \\ c & d \end{pmatrix}.
+    \end{equation*}
+
+    Then, we can solve for the elements of the matrix by solving the following system of equations
+    \begin{align*}
+        \begin{pmatrix} a & b \\ c & d \end{pmatrix} \begin{pmatrix} 1 \\ 0 \end{pmatrix} &= \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ 1 \end{pmatrix}, \\
+        \begin{pmatrix} a & b \\ c & d \end{pmatrix} \begin{pmatrix} 0 \\ 1 \end{pmatrix} &= \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ -1 \end{pmatrix}.
+    \end{align*}
+
+    Solving the above system of equations we find that
+    \begin{equation*}
+        \mathbf{U} = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}.
+    \end{equation*}
+
+    Thus, the unitary operator which transforms the $Z$ basis states to the $X$ basis states is simply the Hadamard gate. Thus, to measure in the $X$ basis we must apply the adjoint of the Hadamard gate to the state before measurement. Conveniently the Hadamard gate is its own adjoint so just the Hadamard gate must be applied to the state before measurement.
 
     \section{Proof any Density Matrix can be Expressed as a Linear Combination of Pauli Matrices}
     \subsection{Motivation}
@@ -94,14 +155,23 @@
     \end{theorem}
 
     \section{Proof of the Sample Complexity for Complete State Tomography}
+    \subsection{Motivation}
+    If we wish to compare the sample complexity of shadow tomography to full state tomography, we must first determine the sample complexity of full state tomography. In this section, we will prove that the sample complexity of full state tomography scales exponentially with the number of qubits.
+
+    \subsection{Theorem}
+    Fix a system of $n$ qubits and maximum error $\epsilon$. Then, the number of measurements required to perform full state tomography scales with the number of qubits as follows:
+    \begin{equation*}
+        N = \mathcal{O}\left(\frac{4^n}{\epsilon^2}\right).
+    \end{equation*}
+
+    \subsection{Proof}
+    In quantum mechanics the outcomes of measurements are probabilistic. Start with the classic example of 
 
     \section{Proof of the Sample Complexity for the Random Local Pauli Measurement Primitive}
-
     \subsection{Motivation}
     Part of what makes shadow tomography appealing is that it requires a smaller number of measurements to predict an observable within the same error when compared to full state tomography. In this section, we will prove that the random local Pauli measurement primitive requires a number of measurements that scales logarithmically with the number of target observables and exponentially in the locality of the observables. This is a significant improvement over full tomography, which requires a number of measurements that scales exponentially with the number of qubits.
 
     \subsection{Theorem}
-
     Fix a collection of $M$ observables, maximum error $\epsilon$, and failure probability $\delta$. Set 
     \begin{equation*}
         K = 2 \log{\left(\frac{2M}{\delta}\right)} \quad \text{and} \quad N \leq \frac{34}{\epsilon^2} \max_{1 \leq i \leq M} 4^{L_i} ||O_i||^2_\infty,
@@ -183,7 +253,6 @@
     \hfill $\square$
 
     \section{Proof of the Computational Complexity for the Estimation of Pauli Observables from shadows generated by the Random Local Pauli Measurement Primitive}
-
     \subsection{Motivation}
     The computational complexity of the estimation of Pauli observables from shadows generated by the random local Pauli measurement primitive is an important consideration when determining the feasibility of the primitive. In this section, we will prove that the computational complexity of the estimation of Pauli observables from shadows generated by the random local Pauli measurement primitive scales linearly with the number of qubits, the number of target observables, the size of the shadow.
 
