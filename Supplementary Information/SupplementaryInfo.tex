@@ -165,11 +165,24 @@
     \end{equation*}
 
     \subsection{Proof}
-    In quantum mechanics the outcomes of measurements are probabilistic. Start with the classic example of 
+    In quantum mechanics the outcomes of measurements are probabilistic and thus the act of measurement can be interpreted as sampling from a probability distribution. The sample variance is given by the following expression
+    \begin{equation}
+        \text{Var}[\bar{\mu}] = \frac{\sum (\mu_i - \bar{\mu})^2}{n-1},
+    \end{equation}
+
+    where $\mu_i$ is the $i$-th measurement outcome, $\bar{\mu}$ is the mean of the measurement outcomes, and $n$ is the number of measurements. Additionally, the sample variance is related to the sample standard deviation by a square root. Thus, the sample standard deviation is given by
+    \begin{equation}
+        \text{SD}[\bar{\mu}] = \sqrt{\text{Var}[\bar{\mu}]} = \sqrt{\frac{\sum (\mu_i - \bar{\mu})^2}{n-1}}.
+    \end{equation}
+
+    The sample standard deviation is the maximum error of the sample mean. Thus if we want the maximum error of the sample mean to be less than $\epsilon$, the number of measurements scales in $\mathcal{O}\left( \frac{1}{\epsilon^2} \right)$.\\
+    Then for a system of $n$ qubits, we require $4^n$ parameters to fully describe the state. Thus, the number of measurements required to perform full state tomography scales with the number of qubits in $\mathcal{O}\left( 4^n \right)$. Thus to estimate the state of a system of $n$ qubits with maximum error $\epsilon$, we require a number of measurements that scales in $\mathcal{O}\left( \frac{4^n}{\epsilon^2} \right)$.
+    \hfill $\square$
+
 
     \section{Proof of the Sample Complexity for the Random Local Pauli Measurement Primitive}
     \subsection{Motivation}
-    Part of what makes shadow tomography appealing is that it requires a smaller number of measurements to predict an observable within the same error when compared to full state tomography. In this section, we will prove that the random local Pauli measurement primitive requires a number of measurements that scales logarithmically with the number of target observables and exponentially in the locality of the observables. This is a significant improvement over full tomography, which requires a number of measurements that scales exponentially with the number of qubits.
+    Part of what makes shadow tomography appealing is that it requires a smaller number of measurements to predict an observable within the same error when compared to full state tomography. In this section, we will prove that the random local Pauli measurement primitive requires a number of measurements that scales logarithmically with the number of target observables and exponentially in the locality of the observables. This is a significant improvement over full tomography, which requires a number of measurements that scales exponentially with the number of qubits. 
 
     \subsection{Theorem}
     Fix a collection of $M$ observables, maximum error $\epsilon$, and failure probability $\delta$. Set 
@@ -322,6 +335,21 @@
         \hat{o} &= \prod_{j=1}^n \left[ \text{tr}\{ 3 U_jP_j U^\dagger_j \ket{\hat{b}_j}\bra{\hat{b}_j}\} - \text{tr}\{ P_j \} \right].
     \end{align*}
 
+    Using this final expression we can do some case analysis to determine the value of the product. 
+    \begin{enumerate}
+        \item If $P_j = \mathbb{I}$ then $\text{tr}\{ P_j \} = 2$ and by the definition of unitary operators and by normalization  $\text{tr}\{ 3 U_j \mathbb{I} U^\dagger_j \ket{\hat{b}_j}\bra{\hat{b}_j}\} = \text{tr}\{ 3 U_j U^\dagger_j \ket{\hat{b}_j}\bra{\hat{b}_j}\} = \text{tr}\{ 3 \ket{\hat{b}_j}\bra{\hat{b}_j}\} = 3$. Therefore, element $j$ of the product evaluates to $3 - 2 = 1$.
+        \item If $P_j \neq \mathbb{I}$ and $U_jP_j U^\dagger_j = \pm Z$ then $\text{tr}\{ P_j \} = 0$ as all the non-identity Pauli operators are traceless and $\text{tr}\{ 3 U_jP_j U^\dagger_j \ket{\hat{b}_j}\bra{\hat{b}_j}\} = \text{tr}\{ 3 (\pm Z) \ket{\hat{b}_j}\bra{\hat{b}_j}\} = \pm 3$. Therefore, element $j$ of the product evaluates to $\pm 3 - 0 = \pm 3$.
+        \item If $P_j \neq \mathbb{I}$ and $U_jP_j U^\dagger_j \neq Z$ then $\text{tr}\{ P_j \} = 0$ as all the non-identity Pauli operators are traceless and $\text{tr}\{ 3 U_jP_j U^\dagger_j \ket{\hat{b}_j}\bra{\hat{b}_j}\} = 0$. Therefore, element $j$ of the product evaluates to $0 - 0 = 0$ and thus the entire product evaluates to 0.
+    \end{enumerate}
+
+    The sign of each factor of $\pm 3$ in the product can be determined by a separate case analysis.
+    \begin{enumerate}
+        \item When $P_j = X$ then $U_j = H$ so $U_jP_j U^\dagger_j = Z$ and the factor evaluates to $+3$ when $\ket{b_j} = \ket{0}$ and $-3$ when $\ket{b_j} = \ket{1}$.
+        \item When $P_j = Y$ then $U_j = HS$ so $U_jP_j U^\dagger_j = -Z$ and the factor evaluates to $-3$ when $\ket{b_j} = \ket{0}$ and $+3$ when $\ket{b_j} = \ket{1}$.
+        \item When $P_j = Z$ then $U_j = \mathbb{I}$ so $U_jP_j U^\dagger_j = Z$ and the factor evaluates to $+3$ when $\ket{b_j} = \ket{0}$ and $-3$ when $\ket{b_j} = \ket{1}$.
+    \end{enumerate}
+
+    Thus, the single shot expectation value of the Pauli observable is $\pm3^{\text{Locality}(O)}$ if for each $j$, such that $U_j \neq \mathbb{I}$, $U_j$ transforms $P_j$ to $\pm Z$ (the Pauli-Z operator). Otherwise the expression evaluates to 0. Then the expectation value of the Pauli observable is given by the mean of these single shot expectation values.
 
     \printbibliography[title={References}]
 
