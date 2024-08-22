@@ -126,33 +126,33 @@
 
     Thus, the unitary operator which transforms the $Z$ basis states to the $X$ basis states is simply the Hadamard gate. Thus, to measure in the $X$ basis we must apply the adjoint of the Hadamard gate to the state before measurement. Conveniently the Hadamard gate is its own adjoint so just the Hadamard gate must be applied to the state before measurement.
 
-    \section{Proof any Density Matrix can be Expressed as a Linear Combination of Pauli Matrices}
-    \subsection{Motivation}
+    % \section{Proof any Density Matrix can be Expressed as a Linear Combination of Pauli Matrices}
+    % \subsection{Motivation}
     
-    \subsection{Theorem}
-    Let $\hat{\rho}$ be an $n \times n$ density matrix. Then, $\hat{\rho}$ can be expressed as a linear combination of tensor products of Pauli matrices. That is, there exists a set of coefficients $\{a_{i_1, i_2, \dots, i_n}\}$ such that:
-    \begin{equation}
-        \hat{\rho} = \sum_{i_1,i_2,\dots,i_n = 0}^{3} a_{i_1, i_2, \dots, i_n} \hat{\sigma}_{i_1,i_2,\dots,i_n},
-    \end{equation}
+    % \subsection{Theorem}
+    % Let $\hat{\rho}$ be an $n \times n$ density matrix. Then, $\hat{\rho}$ can be expressed as a linear combination of tensor products of Pauli matrices. That is, there exists a set of coefficients $\{a_{i_1, i_2, \dots, i_n}\}$ such that:
+    % \begin{equation}
+    %     \hat{\rho} = \sum_{i_1,i_2,\dots,i_n = 0}^{3} a_{i_1, i_2, \dots, i_n} \hat{\sigma}_{i_1,i_2,\dots,i_n},
+    % \end{equation}
 
-    where $\hat{\sigma}_{i_1,i_2,\dots,i_n} = \hat{\sigma}_{i_1} \otimes \hat{\sigma}_{i_2} \otimes \dots \otimes \hat{\sigma}_{i_n}$ and $\hat{\sigma}_{i}$ corresponds to the $i$-th Pauli matrix (where $\sigma_0$ is the $2 \times 2$ identity matrix.). Additionally, the coefficients $a_{i_1, i_2, \dots, i_n}$ are the expectation values of the corresponding Pauli matrices. That is, $a_{i_1, i_2, \dots, i_n} = \text{tr}(\hat{\sigma}_{i_1,i_2,\dots,i_n}\hat{\rho})$.
+    % where $\hat{\sigma}_{i_1,i_2,\dots,i_n} = \hat{\sigma}_{i_1} \otimes \hat{\sigma}_{i_2} \otimes \dots \otimes \hat{\sigma}_{i_n}$ and $\hat{\sigma}_{i}$ corresponds to the $i$-th Pauli matrix (where $\sigma_0$ is the $2 \times 2$ identity matrix.). Additionally, the coefficients $a_{i_1, i_2, \dots, i_n}$ are the expectation values of the corresponding Pauli matrices. That is, $a_{i_1, i_2, \dots, i_n} = \text{tr}(\hat{\sigma}_{i_1,i_2,\dots,i_n}\hat{\rho})$.
 
-    \subsection{Proof}
-    We will begin by proving the theorem for a single qubit. Then, we will extend the proof to $n$ qubits. For a single qubit, the density matrix can be expressed as:
-    \begin{equation}
-        \hat{\rho} = 
-        \begin{pmatrix}
-            \rho_{00} & \rho_{01} \\
-            \rho_{10} & \rho_{11}
-        \end{pmatrix}
-    \end{equation}
+    % \subsection{Proof}
+    % We will begin by proving the theorem for a single qubit. Then, we will extend the proof to $n$ qubits. For a single qubit, the density matrix can be expressed as:
+    % \begin{equation}
+    %     \hat{\rho} = 
+    %     \begin{pmatrix}
+    %         \rho_{00} & \rho_{01} \\
+    %         \rho_{10} & \rho_{11}
+    %     \end{pmatrix}
+    % \end{equation}
 
-    Where to satisfy the Hermiticity condition, $\rho_{01} = \rho_{10}^*$, and $\rho_{00}$ and $\rho_{11}$ are real. Additionally, to satisfy the trace condition, $\text{tr}(\hat{\rho}) = 1$, we have that $\rho_{00} + \rho_{11} = 1$. 
+    % Where to satisfy the Hermiticity condition, $\rho_{01} = \rho_{10}^*$, and $\rho_{00}$ and $\rho_{11}$ are real. Additionally, to satisfy the trace condition, $\text{tr}(\hat{\rho}) = 1$, we have that $\rho_{00} + \rho_{11} = 1$. 
     
-    We know that density matrices are Hermitian and positive semi-definite. Thus, the following theorem is useful.
-    \begin{theorem}
+    % We know that density matrices are Hermitian and positive semi-definite. Thus, the following theorem is useful.
+    % \begin{theorem}
         
-    \end{theorem}
+    % \end{theorem}
 
     \section{Proof of the Sample Complexity for Complete State Tomography}
     \subsection{Motivation}
