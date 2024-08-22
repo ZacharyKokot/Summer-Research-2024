@@ -339,7 +339,7 @@
     \begin{enumerate}
         \item If $P_j = \mathbb{I}$ then $\text{tr}\{ P_j \} = 2$ and by the definition of unitary operators and by normalization  $\text{tr}\{ 3 U_j \mathbb{I} U^\dagger_j \ket{\hat{b}_j}\bra{\hat{b}_j}\} = \text{tr}\{ 3 U_j U^\dagger_j \ket{\hat{b}_j}\bra{\hat{b}_j}\} = \text{tr}\{ 3 \ket{\hat{b}_j}\bra{\hat{b}_j}\} = 3$. Therefore, element $j$ of the product evaluates to $3 - 2 = 1$.
         \item If $P_j \neq \mathbb{I}$ and $U_jP_j U^\dagger_j = \pm Z$ then $\text{tr}\{ P_j \} = 0$ as all the non-identity Pauli operators are traceless and $\text{tr}\{ 3 U_jP_j U^\dagger_j \ket{\hat{b}_j}\bra{\hat{b}_j}\} = \text{tr}\{ 3 (\pm Z) \ket{\hat{b}_j}\bra{\hat{b}_j}\} = \pm 3$. Therefore, element $j$ of the product evaluates to $\pm 3 - 0 = \pm 3$.
-        \item If $P_j \neq \mathbb{I}$ and $U_jP_j U^\dagger_j \neq Z$ then $\text{tr}\{ P_j \} = 0$ as all the non-identity Pauli operators are traceless and $\text{tr}\{ 3 U_jP_j U^\dagger_j \ket{\hat{b}_j}\bra{\hat{b}_j}\} = 0$. Therefore, element $j$ of the product evaluates to $0 - 0 = 0$ and thus the entire product evaluates to 0.
+        \item If $P_j \neq \mathbb{I}$ and $U_jP_j U^\dagger_j \neq Z$ then $\text{tr}\{ P_j \} = 0$ as all the non-identity Pauli operators are traceless and by orthogonality $\text{tr}\{ 3 U_jP_j U^\dagger_j \ket{\hat{b}_j}\bra{\hat{b}_j}\} = 0$. Therefore, element $j$ of the product evaluates to $0 - 0 = 0$ and thus the entire product evaluates to 0.
     \end{enumerate}
 
     The sign of each factor of $\pm 3$ in the product can be determined by a separate case analysis.
