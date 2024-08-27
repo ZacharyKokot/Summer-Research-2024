@@ -69,7 +69,7 @@
         \ket{v_2} \braket{v_2 | \psi} &= v_2 \ket{v_2}.
     \end{align*}
 
-    These two measurement outcomes, $v_1$ and $v_2$, are the eigenvalues of my measurement basis. Say that instead I want to measure in a different basis with eigenstates $\ket{u_1} \text{ and } \ket{u_2}$. I need to then perform some unitary operation on my measurement operator so 
+    These two measurement outcomes, $v_1$ and $v_2$, are the eigenvalues of the measurement basis. Say that instead we want to measure in a different basis with eigenstates $\ket{u_1} \text{ and } \ket{u_2}$. We need to then perform some unitary operation on the measurement operator so 
     \begin{align*}
         \ket{v_1} \bra{v_1} &\xrightarrow{\mathbf{U}} \ket{u_1} \bra{u_1},\\
         \ket{v_2} \bra{v_2} &\xrightarrow{\mathbf{U}} \ket{u_2} \bra{u_2}.
@@ -87,16 +87,16 @@
         \mathbf{U} (\ket{v_2} \bra{v_2} (\mathbf{U}^\dagger \ket{\psi})) &= u_2 \ket{u_2}.
     \end{align*}
 
-    This is useful as we can see that the measurement results are given by the application of the unitary operator to the state before measurement. This allows us to perform measurements in different bases using only computational basis measurements as long as we can fine a unitary operator which performs the desired transformation. Additionally, notice the left most operator $\mathbf{U}$ only serves to transform the state after measurement to the corresponding basis state but as measurement is usually the final step in a quantum circuit it can usually be ignored.
+    This is useful as we can see that the measurement results are given by the application of the unitary operator to the state before measurement. This allows us to perform measurements in different bases using only computational basis measurements as long as we can find a unitary operator which performs the desired transformation. Additionally, notice the left most operator $\mathbf{U}$ only serves to transform the state after measurement to the corresponding basis state but as measurement is usually the final step in a quantum circuit it can usually be ignored.
 
     \subsection{Example}
-    Consider the following example. We wish to measure in the $X$ basis but only have access to computational ($Z$) basis measurements. Following the method above We must find a unitary operator which transforms the $Z$ basis states to the $X$ basis states. Conveniently, We can write the $X$ basis states as a linear combination of the $Z$ basis states as follows
+    Consider the following example. We wish to measure in the $X$ basis but only have access to computational ($Z$) basis measurements. Following the method above we must find a unitary operator which transforms the $Z$ basis states to the $X$ basis states. Conveniently, We can write the $X$ basis states as a linear combination of the $Z$ basis states as
     \begin{align*}
         \ket{+} &= \frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}, \\
         \ket{-} &= \frac{1}{\sqrt{2}}\ket{0} - \frac{1}{\sqrt{2}}\ket{1}.
     \end{align*}
 
-    Thus the unitary operator must act as follows
+    Thus the unitary operator must act as
     \begin{align*}
         \mathbf{U} \ket{0} &= \frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}, \\
         \mathbf{U} \ket{1} &= \frac{1}{\sqrt{2}}\ket{0} - \frac{1}{\sqrt{2}}\ket{1}.
@@ -159,7 +159,7 @@
     If we wish to compare the sample complexity of shadow tomography to full state tomography, we must first determine the sample complexity of full state tomography. In this section, we will prove that the sample complexity of full state tomography scales exponentially with the number of qubits.
 
     \subsection{Theorem}
-    Fix a system of $n$ qubits and maximum error $\epsilon$. Then, the number of measurements required to perform full state tomography scales with the number of qubits as follows:
+    Fix a system of $n$ qubits and maximum error $\epsilon$. Then, the number of measurements required to perform full state tomography (construct the states density matrix within error $\epsilon$) scales with the number of qubits as follows:
     \begin{equation*}
         N = \mathcal{O}\left(\frac{4^n}{\epsilon^2}\right).
     \end{equation*}
@@ -167,16 +167,16 @@
     \subsection{Proof}
     In quantum mechanics the outcomes of measurements are probabilistic and thus the act of measurement can be interpreted as sampling from a probability distribution. The sample variance is given by the following expression
     \begin{equation}
-        \text{Var}[\bar{\mu}] = \frac{\sum (\mu_i - \bar{\mu})^2}{n-1},
+        \text{Var}[\bar{\mu}] = \frac{\sum_i (\mu_i - \bar{\mu})^2}{n-1},
     \end{equation}
 
     where $\mu_i$ is the $i$-th measurement outcome, $\bar{\mu}$ is the mean of the measurement outcomes, and $n$ is the number of measurements. Additionally, the sample variance is related to the sample standard deviation by a square root. Thus, the sample standard deviation is given by
     \begin{equation}
-        \text{SD}[\bar{\mu}] = \sqrt{\text{Var}[\bar{\mu}]} = \sqrt{\frac{\sum (\mu_i - \bar{\mu})^2}{n-1}}.
+        \text{SD}[\bar{\mu}] = \sqrt{\text{Var}[\bar{\mu}]} = \sqrt{\frac{\sum_i (\mu_i - \bar{\mu})^2}{n-1}}.
     \end{equation}
 
     The sample standard deviation is the maximum error of the sample mean. Thus if we want the maximum error of the sample mean to be less than $\epsilon$, the number of measurements scales in $\mathcal{O}\left( \frac{1}{\epsilon^2} \right)$.\\
-    Then for a system of $n$ qubits, we require $4^n$ parameters to fully describe the state. Thus, the number of measurements required to perform full state tomography scales with the number of qubits in $\mathcal{O}\left( 4^n \right)$. Thus to estimate the state of a system of $n$ qubits with maximum error $\epsilon$, we require a number of measurements that scales in $\mathcal{O}\left( \frac{4^n}{\epsilon^2} \right)$.
+    Then for a system of $n$ qubits, we require $4^n$ parameters to fully describe the state. Thus, the number of measurements required to perform full state tomography scales with the number of qubits in $\mathcal{O}\left( 4^n \right)$. Thus to estimate the state of a system of $n$ qubits within maximum error $\epsilon$, we require a number of measurements that scales in $\mathcal{O}\left( \frac{4^n}{\epsilon^2} \right)$.
     \hfill $\square$
 
 
@@ -190,7 +190,7 @@
         K = 2 \log{\left(\frac{2M}{\delta}\right)} \quad \text{and} \quad N \leq \frac{34}{\epsilon^2} \max_{1 \leq i \leq M} 4^{L_i} ||O_i||^2_\infty,
     \end{equation*}
 
-    Where $L_i$ is the locality of the $i$-th observable, $||O||_\infty$ denotes the matrix norm. Then, a collection of $NK$ independent classical shadows allow for the prediction of $M$ observables via median of means prediction such that
+    Where $L_i$ is the locality of the $i$-th observable and $||O||_\infty$ denotes the matrix norm. Then, a collection of $NK$ independent classical shadows allow for the prediction of $M$ observables via median of means prediction such that
     \begin{equation*}
         |\hat{o}_i(N,K) - \text{tr}(O_i\rho)| \leq \epsilon \quad \text{for all} \quad 1 \leq i \leq M
     \end{equation*}
@@ -238,24 +238,24 @@
         \mathbb{P}[|\hat{\mu}(N, K) - \mathbb{E}[X]| \geq \epsilon] \leq 2e^{-K/2}.
     \end{equation}
 
-    We would like to ensure that the probability that the error bound is for any of the $M$ observables is less than $\delta$. To determine an expression for $K$ which satisfies this requirement we can use Booles inequality. Booles inequality states that for any countable set of events $A_1, A_2, \ldots, A_n$ we have
+    We would like to ensure that the probability that the error bound is violated for any of the $M$ observables is less than $\delta$. To determine an expression for $K$ which satisfies this requirement we can use Booles inequality. Booles inequality states that for any countable set of events $A_1, A_2, \ldots, A_n$ we have
     \begin{equation}
         \mathbb{P}\left[\bigcup_{i=1}^n A_i\right] \leq \sum_{i=1}^n \mathbb{P}[A_i].
     \end{equation}
 
-    In English this means that the probability any event in the set occurs is no greater than the sum of the probabilities of the individual events. Assume the estimation of each observable has a probability of violating the error bound of $\delta_0$. Then, by Booles inequality, the probability that the error bound is violated for any of the $M$ observables is less than
+    In English this means that the probability any event in the set occurs is no greater than the sum of the probabilities of the individual events. Assume the estimation of each observable has a probability of violating the error bound of $\mathbb{P}[|\hat{\mu}(N, K) - \mathbb{E}[X]| \geq \epsilon] = \delta_0$. Then, by Booles inequality, the probability that the error bound is violated for any of the $M$ observables is less than
     \begin{equation*}
         \sum_{i=1}^M \mathbb{P}[A_i] = \sum_{i=1}^M \delta_0 = M\delta_0 = \delta.
     \end{equation*}
 
     Thus, we have that
     \begin{equation*}
-        2e^{-K/2} \leq \frac{\delta}{M}.
+        2e^{-K/2} \geq \frac{\delta}{M}.
     \end{equation*}
 
     Rearranging the above expression we find that
     \begin{equation*}
-        K \geq 2\log{\left(\frac{2M}{\delta}\right)}.
+        K \leq 2\log{\left(\frac{2M}{\delta}\right)}.
     \end{equation*}
 
     Hence, a collection of $NK$ independent classical shadows allow for the prediction of $M$ observables via median of means prediction such that
@@ -279,9 +279,9 @@
     The estimation of Pauli observables using a collection of $NK$ independent classical shadows generated by the random local Pauli measurement primitive can be broken down into the following steps for a single observable:
     \begin{enumerate}
         \item Split the $NK$ independent classical shadows into $K$ groups of size $N$.
-        \item Iterate over each group of shadows and estimate the expectation value of the Pauli observable.
+        \item For each group of shadows estimate the expectation value of the Pauli observable by:
         \begin{enumerate}
-            \item Iterate over each shadow in the group.
+            \item Iterating over each shadow in the group.
             \item For each shadow in the group, obtain the single shot expectation value for the Pauli observable.
             \item Compute the mean of the single shot expectation values.
         \end{enumerate}
@@ -290,9 +290,9 @@
 
     It is clear to see how the terms $N$ and $K$ arise as the estimation protocol simply loops over all $NK$ terms in the collection of shadows.
 
-    The term $n$ arises from the way in which each single shot expectation value is obtained. See Section \ref{sec:expectation} for more details.
+    The term $n$ arises from the way in which each single shot expectation value is obtained which requires performing a computation for each single qubit measurement in the shadow. See Section \ref{sec:expectation} for more details.
 
-    Finally, the term $M$ arises from the fact that the estimation protocol must be repeated for each of the $M$ Pauli observables. This is because the estimation of each Pauli observable not dependent of the others in general.
+    Finally, the term $M$ arises from the fact that the estimation protocol must be repeated for each of the $M$ Pauli observables. This is because the estimation of each Pauli observable is not dependent of the others in general. \hfill $\square$ 
 
     \section{Computing the Expectation for a Single Pauli Observable} \label{sec:expectation}
     \subsection{Motivation}
@@ -304,22 +304,22 @@
         \hat{o} = \prod_{j=1}^n \left[ \text{tr}\{ 3 U_jP_j U^\dagger_j \ket{\hat{b}_j}\bra{\hat{b}_j}\} - \text{tr}\{ P_j \} \right].
     \end{equation}
 
-    Where $P_j$ is the $j$-th Pauli operator, $U_j$ is the $j$-th unitary operator, and $\ket{\hat{b}_j}$ is the $j$-th bit of the bitstring of the shadow. Where the above expression evaluates to $\pm3^{\text{Locality}(O)}$ if for each $j$, $U_j$ transforms $P_j$ to $Z$ (the Pauli-Z operator). Otherwise the expression evaluates to 0. Then the expectation value of the Pauli observable is given by the mean of the single shot expectation values.
+    Where $P_j$ is the $j$-th Pauli operator in the tensor product representation of $O$, $U_j$ is the $j$-th unitary operator, and $\ket{\hat{b}_j}$ is the $j$-th bit of the bitstring of the shadow. Where the above expression evaluates to $\pm3^{\text{Locality}(O)}$ if for each $j$, $U_j$ transforms $P_j$ to $\pm Z$ (the Pauli-Z operator) or is the identity. Otherwise the expression evaluates to 0. Then the expectation value of the Pauli observable is given by the mean of these single shot expectation values.
     
     \subsection{Proof}
     Starting with the general expression for the expectation value of an observable, we have:
     \begin{equation*}
-        \hat{o} = \text{tr}(O\hat{\rho})
+        \hat{o} = \text{tr}(O\hat{\rho}).
     \end{equation*}
     
-    Where $O$ is the observable and $\hat{\rho}$ is the classical shadow. For a Pauli observable, $O$, we have that $O = \bigotimes_{j=1}^n P_j$ where $P_j \in \{ \sigma_0, \sigma_1, \sigma_2, \sigma_3 \}$. Then, the expectation value of the Pauli observable is given by:
+    Where $O$ is the observable and $\hat{\rho}$ is the classical shadow. For a Pauli observable, $O$, we have that $O = \bigotimes_{j=1}^n P_j$ where $P_j \in \{ \sigma_0, \sigma_1, \sigma_2, \sigma_3 \}$ (The Pauli matrices and the $2\times2$ identity.). Then, the expectation value of the Pauli observable is given by:
     \begin{equation*}
         \hat{o} = \text{tr}\left\{\left( \bigotimes_{j=1}^n P_j \right) \hat{\rho}\right\}.
     \end{equation*}
 
     From \cite{Huang_Kueng_Preskill_2020}, we have that:
     \begin{theorem}
-        In the random local Pauli measurement primitive, we have the single shot density matrix representation of the state is given by:
+        In the random local Pauli measurement primitive, we have that the single shot density matrix representation of the state is given by:
         \begin{equation}
             \hat{\rho} = \bigotimes^n_{j=1}\left(3U_j^\dagger\ket{\hat{b}_j}\bra{\hat{b}_j}U_j - \mathbb{I} \right).
         \end{equation}
@@ -349,7 +349,7 @@
         \item When $P_j = Z$ then $U_j = \mathbb{I}$ so $U_jP_j U^\dagger_j = Z$ and the factor evaluates to $+3$ when $\ket{b_j} = \ket{0}$ and $-3$ when $\ket{b_j} = \ket{1}$.
     \end{enumerate}
 
-    Thus, the single shot expectation value of the Pauli observable is $\pm3^{\text{Locality}(O)}$ if for each $j$, such that $U_j \neq \mathbb{I}$, $U_j$ transforms $P_j$ to $\pm Z$ (the Pauli-Z operator). Otherwise the expression evaluates to 0. Then the expectation value of the Pauli observable is given by the mean of these single shot expectation values.
+    Thus, the single shot expectation value of the Pauli observable is $\pm3^{\text{Locality}(O)}$ if for each $j$, such that $U_j \neq \mathbb{I}$, $U_j$ transforms $P_j$ to $\pm Z$ (the Pauli-Z operator). Otherwise the expression evaluates to 0. Then the expectation value of the Pauli observable is given by the mean of these single shot expectation values. \hfill $\square$
 
     \printbibliography[title={References}]
 
