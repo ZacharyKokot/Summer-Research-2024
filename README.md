@@ -50,7 +50,7 @@ This notebook isn't intended as an extensive demonstration of how to use the IBM
 
 ### Supplementary Information
 
-For some portions of the code I implemented rather complicated formulas which I believed required further explanation. These explanations are contained in the [Supplementary Information](SupplementaryInfo.pdf) file so refer here for further details.  This document was written in LaTeX and all source code is included along with the compiled PDF.
+For some portions of the code I implemented rather complicated formulas which I believed required further explanation. These explanations are contained in the [Supplementary Information](<Supplementary Information/SupplementaryInfo.pdf>) file so refer here for further details.  This document was written in LaTeX and all source code is included along with the compiled PDF.
 
 ### Data
 
